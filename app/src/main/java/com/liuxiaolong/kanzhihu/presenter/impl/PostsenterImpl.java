@@ -29,7 +29,8 @@ public class PostsenterImpl implements IPostssenter {
             @Override
             public void onSuccess(Object success) {
                 List<Posts> postsList= (List<Posts>) success;
-                iPostsView.ShowPostsData(postsList);
+                int HIDE=2;
+                iPostsView.ShowPostsData(postsList,HIDE);
             }
 
             @Override

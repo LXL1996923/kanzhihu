@@ -31,7 +31,6 @@ public class PostsModelimpl implements IPostsModel {
         mQueue= Volley.newRequestQueue(App.getContext());
 
     }
-
     @Override
     public void loadPostsData(final Callback callback) {
         StringRequest stringRequest=new StringRequest(kanzhihu.GETPOSTS, new Response.Listener<String>() {
