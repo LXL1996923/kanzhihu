@@ -11,5 +11,10 @@ public interface IPostssenter extends IPresenter {
      * 加载首页文章列表
      */
 
-    void  loadPostsData();
+    void  loadPostsData(String api);
+
+    /**
+     * 更新文章列表
+     */
+    void updatePostsData(String updata);
 }

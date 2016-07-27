@@ -19,9 +19,9 @@ public class PostsViewPagerAdapter extends FragmentPagerAdapter {
         super(fm);
 
     }
-    public void addFragment(Fragment fragment,String s){
+    public void addFragment(Fragment fragment,String title){
         fragments.add(fragment);
-        strings.add(s);
+        strings.add(title);
     }
 
     @Override

@@ -4,9 +4,12 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import com.liuxiaolong.kanzhihu.ui.adapter.PostsViewPagerAdapter;
 import com.liuxiaolong.kanzhihu.ui.fragment.Gank;
@@ -28,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     ViewPager homeVP;
     @BindView(R.id.homeNV)
     NavigationView homeNV;
+    @BindView(R.id.homeDL)
+    DrawerLayout homeDL;
 
     private PostsViewPagerAdapter postsViewPagerAdapter;
     private List<Fragment> fragments;
@@ -39,7 +44,8 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         initview();
 
-      setupViewPager(homeVP);
+
+        setupViewPager(homeVP);
         homeTabs.setupWithViewPager(homeVP);
         homeTabs.setTabMode(TabLayout.MODE_FIXED);
 
@@ -47,15 +53,26 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void setupViewPager(ViewPager viewPager) {
-        PostsViewPagerAdapter postsViewPagerAdapter=new PostsViewPagerAdapter(getSupportFragmentManager());
-        postsViewPagerAdapter.addFragment(PostsFragment.newInstance(),"知乎精选");
-        postsViewPagerAdapter.addFragment(Gank.newInstance(),"Gank");
+        PostsViewPagerAdapter postsViewPagerAdapter = new PostsViewPagerAdapter(getSupportFragmentManager());
+        postsViewPagerAdapter.addFragment(PostsFragment.newInstance(), "知乎精选");
+        postsViewPagerAdapter.addFragment(Gank.newInstance(), "Gank");
         viewPager.setAdapter(postsViewPagerAdapter);
     }
-    public void initview(){
+
+    public void initview() {
+
+
+
         setSupportActionBar(homeTL);
         homeTL.setNavigationIcon(R.drawable.ic_menu);
         homeTL.setTitle("看知乎");
+        homeTL.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                homeDL.openDrawer(GravityCompat.START);
+
+            }
+        });
 
     }
 }

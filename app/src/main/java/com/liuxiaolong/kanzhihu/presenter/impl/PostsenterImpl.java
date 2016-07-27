@@ -1,5 +1,6 @@
 package com.liuxiaolong.kanzhihu.presenter.impl;
 
+import com.liuxiaolong.kanzhihu.model.API.kanzhihu;
 import com.liuxiaolong.kanzhihu.model.IModel;
 import com.liuxiaolong.kanzhihu.model.IPostsModel;
 import com.liuxiaolong.kanzhihu.model.entity.Posts;
@@ -24,20 +25,39 @@ public class PostsenterImpl implements IPostssenter {
 
 
     @Override
-    public void loadPostsData() {
+    public void loadPostsData(String api) {
         iPostsModel.loadPostsData(new IModel.Callback() {
             @Override
             public void onSuccess(Object success) {
                 List<Posts> postsList= (List<Posts>) success;
-                int HIDE=2;
-                iPostsView.ShowPostsData(postsList,HIDE);
+
+                iPostsView.ShowPostsData(postsList,2);
             }
 
             @Override
             public void onError(Object error) {
 
             }
-        });
+        }, api);
+
+    }
+
+    @Override
+    public void updatePostsData(String updata) {
+
+        iPostsModel.loadPostsData(new IModel.Callback() {
+            @Override
+            public void onSuccess(Object success) {
+                List<Posts> postsList= (List<Posts>) success;
+
+                iPostsView.UpdataPostsData(postsList);
+            }
+
+            @Override
+            public void onError(Object error) {
+
+            }
+        }, updata);
 
     }
 }

@@ -14,4 +14,11 @@ public interface IPostsView extends IView {
      * @param postsList
      */
     void  ShowPostsData(List<Posts> postsList,int i);
+
+    /**
+     * 更新文章数据
+     * @param postsList
+     *
+     */
+    void UpdataPostsData(List<Posts> postsList);
 }

@@ -32,8 +32,8 @@ public class PostsModelimpl implements IPostsModel {
 
     }
     @Override
-    public void loadPostsData(final Callback callback) {
-        StringRequest stringRequest=new StringRequest(kanzhihu.GETPOSTS, new Response.Listener<String>() {
+    public void loadPostsData(final Callback callback,String api) {
+        StringRequest stringRequest=new StringRequest(api, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {

@@ -32,6 +32,7 @@
 
            android:layout_margin="6dp"
            android:textColor="#212121"
+           android:textSize="18sp"
 
            android:id="@+id/tv_title"
            tools:text="2015-09-29  昨日更新"
