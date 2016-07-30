@@ -2,6 +2,7 @@ package com.liuxiaolong.kanzhihu.ui.fragment;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -20,6 +21,7 @@ import com.liuxiaolong.kanzhihu.model.API.kanzhihu;
 import com.liuxiaolong.kanzhihu.model.entity.Posts;
 import com.liuxiaolong.kanzhihu.presenter.IPostssenter;
 import com.liuxiaolong.kanzhihu.presenter.impl.PostsenterImpl;
+import com.liuxiaolong.kanzhihu.ui.activity.PostAnswersActivity;
 import com.liuxiaolong.kanzhihu.ui.adapter.PostsAdapter;
 import com.liuxiaolong.kanzhihu.view.IPostsView;
 
@@ -132,13 +134,22 @@ public class PostsFragment extends Fragment implements IPostsView{
 
 
     @Override
-    public void ShowPostsData(List<Posts> postsList,int i) {
+    public void ShowPostsData(final List<Posts> postsList) {
         this.postsList=postsList;
         postsAdapter=new PostsAdapter(postsList);
         layoutManager=new LinearLayoutManager(recyclerView.getContext());
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(postsAdapter);
+        postsAdapter.setOnItemClickListener(new PostsAdapter.OnRecyclerViewItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent=new Intent(getContext(), PostAnswersActivity.class);
+                intent.putExtra("data",postsList.get(position));
+                startActivity(intent);
+
+            }
+        });
         Message message=new Message();
         message.what=HIDE;
         handler.sendMessage(message);
@@ -163,6 +174,11 @@ public class PostsFragment extends Fragment implements IPostsView{
 
 
     public void initview() {
+        if(postsAdapter!=null){
+
+
+        }
+
 
 
 
@@ -171,6 +187,11 @@ public class PostsFragment extends Fragment implements IPostsView{
                 public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                     super.onScrolled(recyclerView, dx, dy);
 
+
+
+
+
+
                     int lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition();
 
 
@@ -178,11 +199,7 @@ public class PostsFragment extends Fragment implements IPostsView{
 
                     if (lastVisibleItemPosition == postsAdapter.getItemCount() - 1) {
 
-                        boolean isRefreshing=swipeRefreshLayout.isRefreshing();
-                        if (isRefreshing) {
-                            postsAdapter.notifyItemRemoved(postsAdapter.getItemCount());
-                            return;
-                        }
+
 
 
 
@@ -192,10 +209,9 @@ public class PostsFragment extends Fragment implements IPostsView{
                             isLoading = true;
 
                             iPostssenter.updatePostsData(postsAdapter.getUpdata());
+                            swipeRefreshLayout.setRefreshing(false);
 
 
-                        } else {
-                            Toast.makeText(getContext(), "还没加载完毕", Toast.LENGTH_SHORT);
                         }
                     }
                 }
@@ -207,12 +223,17 @@ public class PostsFragment extends Fragment implements IPostsView{
                 @Override
                 public void onRefresh() {
 
-                    layoutManager = null;
-                    if(postsList!=null){
-                        postsList.clear();
-                    }
 
-                    iPostssenter.loadPostsData(kanzhihu.GETPOSTS);
+                               iPostssenter.loadPostsData(kanzhihu.GETPOSTS);
+
+
+
+
+
+
+
+
+
 
                 }
             });

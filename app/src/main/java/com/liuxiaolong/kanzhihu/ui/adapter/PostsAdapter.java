@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,7 +20,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/7/21.
  */
-public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> implements View.OnClickListener {
+public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder>  implements View.OnClickListener{
     private static final int TYPE_ITEM = 0;
     private static final int TYPE_FOOTER = 1;
 
@@ -28,7 +29,8 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
 
     private List<Posts> postsList;
-    private View.OnClickListener onClickListener;
+    private OnRecyclerViewItemClickListener mOnItemClickListener;
+
 
     public PostsAdapter(List<Posts> postsList) {
         this.postsList = postsList;
@@ -37,13 +39,19 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
         if(viewType==TYPE_ITEM){
             View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.kanzhihu_item,parent,false);
+
+            view.setOnClickListener(this);
             return new ViewHolder(view);
+
         }else if(viewType==TYPE_FOOTER){
             View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.footview,parent,false);
             return new FootViewHolder(view);
         }
+
+
 
         return null;
 
@@ -89,6 +97,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
 
 
+          holder.itemView.setTag(position);
 
 
     }
@@ -107,11 +116,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         return postsList.size()==0?0:postsList.size()+1;
     }
 
-    @Override
-    public void onClick(View view) {
 
-
-    }
 
     public String getUpdata() {
         return updata;
@@ -120,6 +125,18 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
     public void setUpdata(String updata) {
         this.updata = updata;
     }
+
+
+
+    @Override
+    public void onClick(View view) {
+       if(mOnItemClickListener!=null){
+           mOnItemClickListener.onItemClick(view, (Integer) view.getTag());
+       }
+    }
+
+
+
 
 
     public static  class ViewHolder extends RecyclerView.ViewHolder {
@@ -140,5 +157,13 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         public FootViewHolder(View view) {
             super(view);
         }
+    }
+
+
+    public  interface OnRecyclerViewItemClickListener {
+        void onItemClick(View view , int position);
+    }
+    public void setOnItemClickListener(OnRecyclerViewItemClickListener onRecyclerViewItemClickListener){
+               this.mOnItemClickListener=onRecyclerViewItemClickListener;
     }
 }

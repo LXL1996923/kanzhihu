@@ -13,7 +13,7 @@ public interface IPostsView extends IView {
      * 显示首页文章数据
      * @param postsList
      */
-    void  ShowPostsData(List<Posts> postsList,int i);
+    void  ShowPostsData(List<Posts> postsList);
 
     /**
      * 更新文章数据

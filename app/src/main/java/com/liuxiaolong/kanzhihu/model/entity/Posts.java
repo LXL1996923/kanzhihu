@@ -1,9 +1,11 @@
 package com.liuxiaolong.kanzhihu.model.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2016/7/21.
  */
-public class Posts {
+public class Posts implements Serializable{
     int id;
 
     String date;    // 发表日期
