@@ -1,11 +1,14 @@
 package com.liuxiaolong.kanzhihu.ui.fragment;
 
 
+
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -27,7 +30,7 @@ import com.liuxiaolong.kanzhihu.view.IPostsView;
 
 import java.util.List;
 
-import java.util.logging.LogRecord;
+
 
 
 public class PostsFragment extends Fragment implements IPostsView{
@@ -157,7 +160,7 @@ public class PostsFragment extends Fragment implements IPostsView{
     }
 
     @Override
-    public void UpdataPostsData(List<Posts> postsList) {
+    public void UpdatePostsData(List<Posts> postsList) {
         Log.i("test", "UpdataPostsData: "+true);
         this.postsList.addAll(postsList);
         postsAdapter.notifyDataSetChanged();

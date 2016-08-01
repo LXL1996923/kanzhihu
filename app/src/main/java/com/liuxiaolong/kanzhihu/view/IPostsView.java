@@ -20,5 +20,5 @@ public interface IPostsView extends IView {
      * @param postsList
      *
      */
-    void UpdataPostsData(List<Posts> postsList);
+    void UpdatePostsData(List<Posts> postsList);
 }

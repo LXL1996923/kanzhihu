@@ -50,7 +50,7 @@ public class PostsenterImpl implements IPostssenter {
             public void onSuccess(Object success) {
                 List<Posts> postsList= (List<Posts>) success;
 
-                iPostsView.UpdataPostsData(postsList);
+                iPostsView.UpdatePostsData(postsList);
             }
 
             @Override
