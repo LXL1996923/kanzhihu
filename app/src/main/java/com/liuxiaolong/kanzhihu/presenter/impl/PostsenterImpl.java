@@ -1,9 +1,10 @@
 package com.liuxiaolong.kanzhihu.presenter.impl;
 
-import com.liuxiaolong.kanzhihu.model.API.kanzhihu;
+
 import com.liuxiaolong.kanzhihu.model.IModel;
 import com.liuxiaolong.kanzhihu.model.IPostsModel;
-import com.liuxiaolong.kanzhihu.model.entity.Posts;
+
+import com.liuxiaolong.kanzhihu.model.entity.Post;
 import com.liuxiaolong.kanzhihu.model.impl.PostsModelimpl;
 import com.liuxiaolong.kanzhihu.presenter.IPostssenter;
 import com.liuxiaolong.kanzhihu.view.IPostsView;
@@ -29,7 +30,7 @@ public class PostsenterImpl implements IPostssenter {
         iPostsModel.loadPostsData(new IModel.Callback() {
             @Override
             public void onSuccess(Object success) {
-                List<Posts> postsList= (List<Posts>) success;
+                List<Post> postsList= (List<Post>) success;
 
                 iPostsView.ShowPostsData(postsList);
             }
@@ -48,7 +49,7 @@ public class PostsenterImpl implements IPostssenter {
         iPostsModel.loadPostsData(new IModel.Callback() {
             @Override
             public void onSuccess(Object success) {
-                List<Posts> postsList= (List<Posts>) success;
+                List<Post> postsList= (List<Post>) success;
 
                 iPostsView.UpdatePostsData(postsList);
             }

@@ -9,10 +9,10 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.liuxiaolong.kanzhihu.App;
-import com.liuxiaolong.kanzhihu.model.API.kanzhihu;
-import com.liuxiaolong.kanzhihu.model.IModel;
+
 import com.liuxiaolong.kanzhihu.model.IPostsModel;
-import com.liuxiaolong.kanzhihu.model.entity.Posts;
+import com.liuxiaolong.kanzhihu.model.entity.Post;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,13 +41,13 @@ public class PostsModelimpl implements IPostsModel {
                     int count =obj.getInt("count");
                     JSONArray array=obj.getJSONArray("posts");
                     Gson gson=new Gson();
-                    List<Posts> postslist=new ArrayList<>();
+                    List<Post> postslist=new ArrayList<>();
 
                     for (int i = 0; i <count ; i++) {
-                        Posts posts;
-                        posts=gson.fromJson(array.getString(i),Posts.class);
-                        postslist.add(posts);
-                        Log.i("test", "onResponse: "+posts.toString());
+                        Post post;
+                        post=gson.fromJson(array.getString(i),Post.class);
+                        postslist.add(post);
+                        Log.i("test", "onResponse: "+post.toString());
                     }
                     callback.onSuccess(postslist);
                 } catch (JSONException e) {

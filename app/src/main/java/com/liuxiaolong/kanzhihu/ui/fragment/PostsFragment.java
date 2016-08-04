@@ -17,11 +17,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+
 
 import com.liuxiaolong.kanzhihu.R;
 import com.liuxiaolong.kanzhihu.model.API.kanzhihu;
-import com.liuxiaolong.kanzhihu.model.entity.Posts;
+import com.liuxiaolong.kanzhihu.model.entity.Post;
+
 import com.liuxiaolong.kanzhihu.presenter.IPostssenter;
 import com.liuxiaolong.kanzhihu.presenter.impl.PostsenterImpl;
 import com.liuxiaolong.kanzhihu.ui.activity.PostAnswersActivity;
@@ -40,7 +41,7 @@ public class PostsFragment extends Fragment implements IPostsView{
     private boolean isLoading;
 
     private IPostssenter iPostssenter;
-    private List<Posts> postsList;
+    private List<Post> postsList;
     private RecyclerView recyclerView;
     private PostsAdapter postsAdapter;
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -137,7 +138,7 @@ public class PostsFragment extends Fragment implements IPostsView{
 
 
     @Override
-    public void ShowPostsData(final List<Posts> postsList) {
+    public void ShowPostsData(final List<Post> postsList) {
         this.postsList=postsList;
         postsAdapter=new PostsAdapter(postsList);
         layoutManager=new LinearLayoutManager(recyclerView.getContext());
@@ -160,7 +161,7 @@ public class PostsFragment extends Fragment implements IPostsView{
     }
 
     @Override
-    public void UpdatePostsData(List<Posts> postsList) {
+    public void UpdatePostsData(List<Post> postsList) {
         Log.i("test", "UpdataPostsData: "+true);
         this.postsList.addAll(postsList);
         postsAdapter.notifyDataSetChanged();

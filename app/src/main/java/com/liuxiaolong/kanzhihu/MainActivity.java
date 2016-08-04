@@ -12,8 +12,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.liuxiaolong.kanzhihu.ui.adapter.PostsViewPagerAdapter;
+
 import com.liuxiaolong.kanzhihu.ui.fragment.Gank;
 import com.liuxiaolong.kanzhihu.ui.fragment.PostsFragment;
+
 
 import java.util.List;
 
@@ -34,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.homeDL)
     DrawerLayout homeDL;
 
-    private PostsViewPagerAdapter postsViewPagerAdapter;
+
     private List<Fragment> fragments;
 
     @Override

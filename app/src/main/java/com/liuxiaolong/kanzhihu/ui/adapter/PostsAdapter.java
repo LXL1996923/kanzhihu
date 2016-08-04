@@ -5,15 +5,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
+
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.liuxiaolong.kanzhihu.App;
+
 import com.liuxiaolong.kanzhihu.R;
-import com.liuxiaolong.kanzhihu.model.API.kanzhihu;
-import com.liuxiaolong.kanzhihu.model.entity.Posts;
+
+import com.liuxiaolong.kanzhihu.model.entity.Post;
+
 
 import java.util.List;
 
@@ -28,11 +29,11 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
 
 
-    private List<Posts> postsList;
+    private List<Post> postsList;
     private OnRecyclerViewItemClickListener mOnItemClickListener;
 
 
-    public PostsAdapter(List<Posts> postsList) {
+    public PostsAdapter(List<Post> postsList) {
         this.postsList = postsList;
     }
 
@@ -61,9 +62,9 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
     public void onBindViewHolder(final ViewHolder holder, int position) {
 
        if (position<postsList.size()){
-           Posts posts=postsList.get(position);
+           Post post=postsList.get(position);
            if(postsList.size()-position==1){
-               String publishtime=posts.getPublishtime();
+               String publishtime=post.getPublishtime();
 
                String updata="http://api.kanzhihu.com/getposts/"+publishtime;
                setUpdata(updata);
@@ -73,8 +74,8 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
            }
 
-           String date=posts.getDate();
-           switch (posts.getName()){
+           String date=post.getDate();
+           switch (post.getName()){
                case "yesterday":
                    holder.tvTitle.setText(date+" 昨日最新");
                    break;
@@ -88,10 +89,10 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
 
 
-           holder.excerpt.setText(posts.getExcerpt());
+           holder.excerpt.setText(post.getExcerpt());
 
            Glide.with(holder.ivTitle.getContext())
-                   .load(posts.getPic())
+                   .load(post.getPic())
                    .into(holder.ivTitle);
        }
 

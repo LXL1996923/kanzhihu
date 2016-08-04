@@ -16,5 +16,5 @@ public interface IPostssenter extends IPresenter {
     /**
      * 更新文章列表
      */
-    void updatePostsData(String updata);
+    void updatePostsData(String update);
 }

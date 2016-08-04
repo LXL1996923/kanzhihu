@@ -21,7 +21,9 @@
         <activity
             android:name=".ui.activity.PostAnswersActivity"
             android:label="@string/title_activity_post_answers"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme">
+
+        </activity>
     </application>
 
 </manifest>

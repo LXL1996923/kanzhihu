@@ -8,15 +8,16 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 
+
 import com.liuxiaolong.kanzhihu.R;
-import com.liuxiaolong.kanzhihu.model.entity.Posts;
+import com.liuxiaolong.kanzhihu.model.entity.Post;
 import com.liuxiaolong.kanzhihu.view.app.SwipeBackActivity;
 
 
 
 public class PostAnswersActivity extends SwipeBackActivity {
 
-    private Posts post;
+    private Post post;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +27,7 @@ public class PostAnswersActivity extends SwipeBackActivity {
 
 
 
-        post=(Posts)getIntent().getSerializableExtra("data");
+        post=(Post)getIntent().getSerializableExtra("data");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         String s=null;
@@ -42,7 +43,7 @@ public class PostAnswersActivity extends SwipeBackActivity {
                 break;
         }
 
-        toolbar.setTitle(post.getDate()+""+s);
+        toolbar.setTitle(post.getDate()+" "+s);
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
